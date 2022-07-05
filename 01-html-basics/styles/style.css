@@ -65,7 +65,7 @@ body {
 }
 
 *{
-    border-top: 5px dotted #1098ad;
+    /* border-top: 5px dotted #1098ad; */
 }
 
 .like {
@@ -84,4 +84,9 @@ button::first-letter {
     width: 80%;
     margin-top: auto;
     margin-left: 10%;
+}
+
+.user-info{
+    display: flex;
+    gap: 15px;
 }

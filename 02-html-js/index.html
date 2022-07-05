@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login Form</title>
+  </head>
+  <body>
+    <form onsubmit="onLogin(event)">
+      <label for="email">Email : </label>
+      <input type="text" id="email" name="email" />
+      <br />
+      <label for="password">Password : </label>
+      <input type="password" id="password" name="password" />
+      <br />
+      <input type="submit" value="Login" id="btnSubmit" />
+      <input type="reset" value="Reset" id="btnReset" />
+    </form>
+    <script>
+      //   var emailField = document.getElementById("email");
+      var emailField = document.querySelector("#email");
+      function onLogin(event) {
+        event.preventDefault();
+        if (emailField.value.trim() === "") {
+          alert("Email field is mandatory");
+        }else if(!emailField.value.includes("@")){
+            alert("Email should be proper format")
+        }else{
+            var paragraphEl = document.createElement("p")
+            paragraphEl.innerHTML = '<span>' + emailField.value + '</span>'
+            // paragraphEl.innerText = "Hola, " + emailField.value 
+            document.body.appendChild(paragraphEl);
+        }
+      }
+    </script>
+  </body>
+</html>
