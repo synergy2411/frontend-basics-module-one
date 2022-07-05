@@ -9,29 +9,50 @@
   <body>
     <form onsubmit="onLogin(event)">
       <label for="email">Email : </label>
-      <input type="text" id="email" name="email" />
+      <input type="text" id="email" name="email" onblur="onEmailBlur()" />
       <br />
       <label for="password">Password : </label>
       <input type="password" id="password" name="password" />
       <br />
       <input type="submit" value="Login" id="btnSubmit" />
-      <input type="reset" value="Reset" id="btnReset" />
+      <input
+        type="reset"
+        value="Reset"
+        id="btnReset"
+        onclick="onReset(event)"
+      />
     </form>
     <script>
       //   var emailField = document.getElementById("email");
       var emailField = document.querySelector("#email");
+      var passwordField = document.getElementById("password");
+      var paragraphEl = document.createElement("p");
+
+      function onEmailBlur() {
+        console.log("Email Blurred");
+      }
+
       function onLogin(event) {
         event.preventDefault();
         if (emailField.value.trim() === "") {
           alert("Email field is mandatory");
-        }else if(!emailField.value.includes("@")){
-            alert("Email should be proper format")
-        }else{
-            var paragraphEl = document.createElement("p")
-            paragraphEl.innerHTML = '<span>' + emailField.value + '</span>'
-            // paragraphEl.innerText = "Hola, " + emailField.value 
-            document.body.appendChild(paragraphEl);
+        } else if (!emailField.value.includes("@")) {
+          alert("Email should be proper format");
+        } else if (passwordField.value.trim().length < 6) {
+          alert("Password should be at least 6 characters long");
+        } else {
+          paragraphEl.innerHTML = "<span>" + emailField.value + "</span>";
+          // paragraphEl.innerText = "Hola, " + emailField.value
+          console.log("Password : " + passwordField.value);
+          document.body.appendChild(paragraphEl);
         }
+      }
+
+      function onReset(event) {
+        event.preventDefault();
+        emailField.value = "";
+        passwordField.value = "";
+        paragraphEl.innerHTML = "";
       }
     </script>
   </body>
