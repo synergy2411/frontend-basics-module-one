@@ -1,0 +1,13 @@
+{
+    "products" : [
+        {
+            "name" : "iPhone 13",
+            "price" : 129,
+            "soldOut" : true
+        },{
+            "name" : "Galaxy",
+            "price" : 100,
+            "soldOut" : false
+        }
+    ]
+}

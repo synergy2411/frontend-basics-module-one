@@ -4,20 +4,26 @@ ul {
 .link-item {
   display: inline;
   margin: 10px;
-  padding: 8px;
+  padding: 18px;
 }
 .container {
   border: 2px rosybrown dashed;
   padding: 8px;
   margin: 10px;
 }
-.nav-link {
+.nav-link:link{
+    text-decoration: none;
+}
+.nav-link:active {
   text-decoration: none;
   color: brown;
-  transition: 0.3s all ease;
+  /* transition: 0.3s all ease; */
+}
+a:visited{
+    color: rosybrown;
 }
 .nav-link:hover {
-  font-size: 1.1em;
+  text-decoration: underline wavy orangered;
 }
 .user-info {
   display: flex;
@@ -52,4 +58,10 @@ ul {
     margin-top: 33vh;
     height: 33vh;
     z-index: 70%;
+}
+
+.main-container{
+    width: 800px;
+    margin-left: auto;
+    margin-right: auto;
 }
