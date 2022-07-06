@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Drag Drop Demo</title>
+  </head>
+  <body>
+    <style>
+      #container {
+        width: 300px;
+        height: 300px;
+        border: 2px grey dotted;
+      }
+      .main{
+        display: flex;
+        column-gap: 20px;
+      }
+    </style>
+    <div class="main">
+      <div id="container"></div>
+      <img src="images/tim.jpg" draggable="true" id="img1" alt=""/>
+    </div>
+
+    <script>
+        var img = document.getElementById("img1")
+        var divEl = document.getElementById("container")
+
+        img.addEventListener("dragstart", function(event){
+            // console.log("Dragging started", event)
+            event.dataTransfer.dropEffect = "move";
+            event.dataTransfer.setData("text", event.target.id)
+        })
+
+        divEl.addEventListener("dragover", function(event){
+            event.preventDefault();
+            // console.log("DRAG OVER")
+        })
+
+        divEl.addEventListener("drop", function(event){
+            var imageId = event.dataTransfer.getData("text");
+            const imageEl = document.getElementById(imageId)
+            event.target.appendChild(imageEl);
+        })
+    </script>
+  </body>
+</html>

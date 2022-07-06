@@ -1,51 +1,64 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Canvas Demo</title>
-</head>
-<body>
-    <canvas id="canvas" width="400px" height="400px" style="border: 1px solid grey;"></canvas>
+  </head>
+  <body>
+    <canvas
+      id="canvas"
+      width="400px"
+      height="400px"
+      style="border: 1px solid grey"
+    ></canvas>
     <script>
-        var canvasEl = document.getElementById("canvas");
-        var context = canvasEl.getContext('2d');
-        context.fillStyle = "#10982d"
-        context.fillRect(10,10, 100, 100)
+      var canvasEl = document.getElementById("canvas");
+      var context = canvasEl.getContext("2d");
 
-        context.strokeStyle="rgb(210, 210, 0)"
-        context.strokeRect(110,10, 100, 100)
+      // canvasEl.addEventListener("mousemove", function(event){
+      // })
+      context.fillStyle = "#10982d";
+      context.fillRect(10, 10, 100, 100);
 
-        context.beginPath()
-        context.moveTo(10,10)
-        context.lineTo(110,110)
-        context.stroke()
-        context.closePath()
+      context.strokeStyle = "rgb(210, 210, 0)";
+      context.strokeRect(120, 10, 100, 100);
 
-        context.fillStyle = "#ff45ff"
-        context.font = "normal bold 30px serif"
-        context.fillText("Hello Canvas", 10, 150)
+      context.beginPath();
+      context.moveTo(10, 10);
+      context.lineTo(110, 110);
+      context.lineTo(150, 10);
+      context.lineTo(190, 110);
+      context.lineTo(230, 10);
+      context.lineTo(270, 110);
+      context.lineTo(300, 10);
+      context.stroke();
+      context.closePath();
 
-        context.font = "italic normal 24px Arial"
-        context.strokeStyle="rgb(120,240,100)"
-        context.strokeText("Hello World", 10, 200)
+      context.fillStyle = "#ff45ff";
+      context.font = "normal bold 30px serif";
+      context.fillText("Hello Canvas", 10, 150);
 
-        var image = document.createElement("img");
+      context.font = "italic normal 24px Arial";
+      context.strokeStyle = "rgb(120,240,100)";
+      context.strokeText("Hello World", 10, 200);
 
-        window.onload = function(){
-            drawImageOnCanvas()
-        }
+      var image = document.createElement("img");
 
-        function drawImageOnCanvas(){
-            image.src = "images/tim.jpg"
-            image.addEventListener("load", loadImage)
-            // image.onload = loadImage;
-        }
+      window.onload = function () {
+        drawImageOnCanvas();
+      };
 
-        function loadImage(){
-            context.drawImage(image, 10, 200)
-        }
+      function drawImageOnCanvas() {
+        image.src = "images/tim.jpg";
+        image.addEventListener("load", loadImage);
+        // image.onload = loadImage;
+      }
+
+      function loadImage() {
+        context.drawImage(image, 10, 200);
+      }
     </script>
-</body>
+  </body>
 </html>
