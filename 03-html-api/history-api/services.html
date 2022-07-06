@@ -14,13 +14,23 @@
       <li><a href="contact.html">Contact Us</a></li>
     </ul>
     <h1>Services Page</h1>
-    <button onclick="onBack()">Back</button>
+    <button id="btnBack">Back</button>
     <button onclick="onForward()">Forward</button>
     <button onclick="onGoTo()">Go To</button>
     <script>
-        window.addEventListener("popstate", function(event){
-            alert("popped")
+        const btnBack = document.getElementById("btnBack")
+
+        btnBack.addEventListener("click", function(){
+            history.back();
         })
+        window.addEventListener("popstate", function(event){
+            console.log(event)
+            alert("popped" + event.toString())
+            console.log(location)
+        })
+        // window.onpopstate = function(event){
+
+        // }
       function onGoTo() {
         // history.go(-1);
         history.pushState(null, "", "products.html")
@@ -28,9 +38,9 @@
       function onForward() {
         history.forward();
       }
-      function onBack() {
-        history.back();
-      }
+    //   function onBack() {
+    //     history.back();
+    //   }
     </script>
   </body>
 </html>

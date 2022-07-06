@@ -19,6 +19,11 @@
     <button onclick="onGoTo()">Go To</button>
 
     <script>
+        window.addEventListener("popstate", function(event){
+            console.log(event)
+            alert("popped" + event.toString())
+            console.log(location.pathname)
+        })
         function onGoTo(){
             history.go(-1)
         }
