@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Challenge</title>
+    <style>
+        .container {
+            display: flex;
+            column-gap: 2%;
+        }
+        .block{
+            background-color: lightgrey;
+            width: 25%;
+            height: 100px;
+            text-align: center;
+            color: white;
+            font-size: 18px;
+            font-weight: bold;
+            border: 2px darkgrey solid;
+            box-shadow: 2px 3px grey;
+        }
+        .my-border{
+            border: 2px dotted black;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="block" draggable="true">A</div>
+        <div class="block" draggable="true">B</div>
+        <div class="block" draggable="true">C</div>
+    </div>
+    <script>
+        var blocks = document.querySelectorAll(".block")
+        for(var i = 0; i<blocks.length; i++){
+            blocks[i].addEventListener("dragstart", onDragStart)
+            blocks[i].addEventListener("dragend", onDragEnd)
+            blocks[i].addEventListener("dragover", onDragOver)
+            blocks[i].addEventListener("dragenter", onDragEnter)
+            blocks[i].addEventListener("dragleave", onDragLeave)
+            blocks[i].addEventListener("drop", onDrop)
+        }
+        function onDrop(event){
+            event.target.classList.remove("my-border")
+        }
+        function onDragOver(event){
+            console.log("OVER")
+            event.preventDefault()
+        }
+        function onDragEnter(event){
+            event.target.classList.add("my-border")
+        }
+        function onDragLeave(event){
+            event.target.classList.remove("my-border")
+        }
+        function onDragEnd(){
+            event.target.style.opacity = '1'
+            event.target.classList.remove("my-border")
+        }
+        function onDragStart(event){
+            event.target.style.opacity = '0.3'
+        }
+    </script>
+</body>
+</html>
