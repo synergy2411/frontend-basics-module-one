@@ -34,7 +34,10 @@
         <div class="block" draggable="true">C</div>
     </div>
     <script>
-        var blocks = document.querySelectorAll(".block")
+        // var blocks = document.querySelectorAll(".block")
+        var blocks = document.getElementsByClassName("block")
+        var sourceEl = null;
+
         for(var i = 0; i<blocks.length; i++){
             blocks[i].addEventListener("dragstart", onDragStart)
             blocks[i].addEventListener("dragend", onDragEnd)
@@ -44,10 +47,15 @@
             blocks[i].addEventListener("drop", onDrop)
         }
         function onDrop(event){
+            event.stopPropagation()
             event.target.classList.remove("my-border")
+            if(sourceEl !== event.target){
+                sourceEl.innerHTML = event.target.innerHTML;
+                var data = event.dataTransfer.getData("text/html")
+                event.target.innerHTML = data;
+            }
         }
         function onDragOver(event){
-            console.log("OVER")
             event.preventDefault()
         }
         function onDragEnter(event){
@@ -62,6 +70,8 @@
         }
         function onDragStart(event){
             event.target.style.opacity = '0.3'
+            sourceEl = event.target;        // B
+            event.dataTransfer.setData("text/html", event.target.innerHTML)     // B
         }
     </script>
 </body>
