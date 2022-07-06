@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Services Page</title>
+  </head>
+  <body>
+    <ul>
+      <li><a href="home.html">Home</a></li>
+      <li><a href="products.html">Products</a></li>
+      <li><a href="services.html">Service</a></li>
+      <li><a href="contact.html">Contact Us</a></li>
+    </ul>
+    <h1>Services Page</h1>
+    <button onclick="onBack()">Back</button>
+    <button onclick="onForward()">Forward</button>
+    <button onclick="onGoTo()">Go To</button>
+    <script>
+        window.addEventListener("popstate", function(event){
+            alert("popped")
+        })
+      function onGoTo() {
+        // history.go(-1);
+        history.pushState(null, "", "products.html")
+      }
+      function onForward() {
+        history.forward();
+      }
+      function onBack() {
+        history.back();
+      }
+    </script>
+  </body>
+</html>
