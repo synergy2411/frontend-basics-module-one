@@ -1,51 +1,67 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-</head>
-<body>
-    <h4 id="conn-status">Status : </h4>
+  </head>
+  <body>
+    <h4 id="conn-status">Status :</h4>
     <div class="container">
-        <form>
-            <textarea readonly name="ta-msg" id="ta-msg" cols="30" rows="10"></textarea>
-            <br />
-            <input type="text" name="txt-msg" id="txt-msg">
-            <button id="sendBtn">Send</button>
-        </form>
+      <form>
+        <textarea
+          readonly
+          name="ta-msg"
+          id="ta-msg"
+          cols="30"
+          rows="10"
+        ></textarea>
+        <br />
+        <input type="text" name="txt-msg" id="txt-msg" />
+        <button id="sendBtn">Send</button>
+      </form>
     </div>
     <script>
-        var divStatus = document.getElementById("conn-status")
-        var sendBtn = document.getElementById("sendBtn");
-        var txtInput = document.getElementById("txt-msg")
-        var taMsg = document.getElementById("ta-msg")
+      var username = prompt("Please enter your name");
+      var divStatus = document.getElementById("conn-status");
+      var sendBtn = document.getElementById("sendBtn");
+      var txtInput = document.getElementById("txt-msg");
+      var taMsg = document.getElementById("ta-msg");
 
-        if("WebSocket" in window){
-            var socket = new WebSocket("ws://localhost:1337")
-            socket.addEventListener("open", function(event){
-                console.log("connected")
-                divStatus.innerHTML += "Connected"
+      if ("WebSocket" in window) {
+        var socket = new WebSocket("ws://localhost:1337");
+        socket.addEventListener("open", function (event) {
+          console.log("connected");
+          divStatus.innerHTML += "You are connected, " + username;
+        });
+        sendBtn.addEventListener("click", function (event) {
+          event.preventDefault();
+          socket.send(
+            JSON.stringify({ 
+                username: username, 
+                value: txtInput.value 
             })
-            sendBtn.addEventListener("click", function(event){
-                event.preventDefault()
-                socket.send(txtInput.value);
-                txtInput.value = '';
-            })
-            socket.addEventListener("message",function(event){
-                taMsg.append(event.data + "\n")
-            })
-            socket.addEventListener("close", function(event){
-                alert("About to close")
-            })
-            socket.addEventListener("error", function(err){
-                console.error(error)
-            })
-        }else{
-            alert("You don't have socket support")
-        }
+          );
+          txtInput.value = "";
+        });
+        socket.addEventListener("message", function (event) {
+            var userdata = JSON.parse(event.data)
+            if(userdata.username === username){
+                  taMsg.append("ME :"  + userdata.value + "\n");
+            }else{
+                taMsg.append(userdata.username + " :"  + userdata.value + "\n");
+            }
+        });
+        socket.addEventListener("close", function (event) {
+          alert("About to close");
+        });
+        socket.addEventListener("error", function (err) {
+          console.error(error);
+        });
+      } else {
+        alert("You don't have socket support");
+      }
     </script>
-
-</body>
+  </body>
 </html>
