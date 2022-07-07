@@ -7,7 +7,7 @@
     <title>Document</title>
 </head>
 <body>
-    <div id="conn-status">Status : </div>
+    <h4 id="conn-status">Status : </h4>
     <div class="container">
         <form>
             <textarea readonly name="ta-msg" id="ta-msg" cols="30" rows="10"></textarea>
@@ -17,7 +17,7 @@
         </form>
     </div>
     <script>
-        var status = document.getElementById("conn-status")
+        var divStatus = document.getElementById("conn-status")
         var sendBtn = document.getElementById("sendBtn");
         var txtInput = document.getElementById("txt-msg")
         var taMsg = document.getElementById("ta-msg")
@@ -26,6 +26,7 @@
             var socket = new WebSocket("ws://localhost:1337")
             socket.addEventListener("open", function(event){
                 console.log("connected")
+                divStatus.innerHTML += "Connected"
             })
             sendBtn.addEventListener("click", function(event){
                 event.preventDefault()
@@ -42,7 +43,7 @@
                 console.error(error)
             })
         }else{
-            alert("You have socket support")
+            alert("You don't have socket support")
         }
     </script>
 
