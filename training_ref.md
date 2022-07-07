@@ -32,3 +32,10 @@ https://chat.whatsapp.com/Jm2obE5exGDBNfJjpVoB4E
 - npm install nodemon -D
 - npm install
 - npm run start
+
+# SSE
+- Download 'sse' folder from Git
+- cd sse
+- npm i nodemon -g
+- npm install
+- node index.js
