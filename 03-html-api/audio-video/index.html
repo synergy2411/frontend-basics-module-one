@@ -29,8 +29,20 @@
       <button id="playBtn">▶</button>
       <button id="pauseBtn">⏸</button>
     </div>
+
+    <!-- <video src="video/sample.mp4" width="300px" height="300px" controls poster="https://picsum.photos/300"></video> -->
     
     <script>
+        var video = document.createElement("video")
+        video.src="video/sample.mp4"
+        video.width="400"
+        video.height="400"
+        video.controls = true
+        video.poster="https://picsum.photos/300";
+        document.body.appendChild(video);
+
+        console.log(video);
+
       var audio = new Audio("audio/sample.mp3");
       playBtn.addEventListener("click", function(){
         audio.play()
