@@ -24,3 +24,11 @@ https://chat.whatsapp.com/Jm2obE5exGDBNfJjpVoB4E
 - Event-Driven
 - *OOP Concepts
 - ECMA 2015 - ES2015 / ES6
+
+
+# Socket Server
+- Download 'web-socket' folder from Git
+- cd web-socket
+- npm install nodemon -D
+- npm install
+- npm run start
